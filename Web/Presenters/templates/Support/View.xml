@@ -1,5 +1,5 @@
 {extends "../@layout.xml"}
-{block title}Помощь{/block}
+{block title}{_header_help}{/block}
 
 {block header}
     {$ticket->getName()}
@@ -13,7 +13,7 @@
             {$ticket->getName()}
         </b>
     </a>
-    <br></b>Статус: {$ticket->getStatus()}
+    <br></b>{_ticket_status}: {$ticket->getStatus()}
 </div>
 <div class="text" style="padding-top: 10px;border-bottom: #ECECEC solid 1px;">
     {$ticket->getContext()}
@@ -21,7 +21,7 @@
 </div>
 <div style="padding-top: 5px;">
     {$ticket->getTime()}&nbsp;|&nbsp;
-    <a href="/support/delete/{$id}?hash={$csrfToken}">Удалить</a>
+    <a href="/support/delete/{$id}?hash={$csrfToken}">{_delete}</a>
 </div>
 {if $ticket->getType() !== 2}
 <br>
@@ -33,12 +33,12 @@
                 </div>
                 <input type="hidden" name="hash" value="{$csrfToken}" />
                 <br>
-                <input type="submit" value="Написать" class="button">
+                <input type="submit" value="{_write}" class="button">
             </form>
         </div>
 {/if}
 </br>
-<p n:if="!$comments">Комментарии отсутствуют</p>
+<p n:if="!$comments">{_no_posts_abstract}</p>
 <table n:foreach="$comments as $comment" border="0" style="font-size: 11px;" class="post">
    <tbody>
       <tr>
@@ -58,14 +58,14 @@
             <div class="post-author">
                <a href="{$comment->getUser()->getURL()}"><b>
                {$comment->getUser()->getFullName()}
-               </b></a> написал<br>
+               </b></a> {_post_writes_m}<br>
                <a href="#" class="date">{$comment->getTime()}</a>
             </div>
             {elseif ($comment->getUType() === 1)}
             <div class="post-author">
                <a href="#"><b>
                {=OPENVK_ROOT_CONF["openvk"]["preferences"]["support"]["supportName"]} №{$comment->getAgentNumber()}
-               </b></a> написал<br>
+               </b></a> {_post_writes_m}<br>
                <a href="#" class="date">{$comment->getTime()}</a>
             </div>
             {/if}
@@ -75,7 +75,7 @@
                </div>
                {if $comment->getUType() === 0}
                <div class="post-menu">
-                  <a href="/support/comment/{$comment->getId()}/delete">Удалить</a>
+                  <a href="/support/comment/{$comment->getId()}/delete">{_delete}</a>
                </div>
                {/if}
             </div>

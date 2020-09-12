@@ -1,8 +1,8 @@
 {extends "../@layout.xml"}
-{block title}Помощь{/block}
+{block title}{_header_help}{/block}
 
 {block header}
-    Помощь
+    {_header_help}
 {/block}
 
 {block content}
@@ -14,13 +14,13 @@
 {if $thisUser}
        <div class="tabs">
         <div n:attr="id => ($isMain ? 'activetabs' : 'ki')" class="tab">
-            <a n:attr="id => ($isMain ? 'act_tab_a' : 'ki')" href="/support">Часто задаваемые вопросы</a>
+            <a n:attr="id => ($isMain ? 'act_tab_a' : 'ki')" href="/support">{_frequently_asked_questions}</a>
         </div>
         <div n:attr="id => ($isList ? 'activetabs' : 'ki')" class="tab">
-            <a n:attr="id => ($isList ? 'act_tab_a' : 'ki')" href="/support?act=list">Список обращений</a>
+            <a n:attr="id => ($isList ? 'act_tab_a' : 'ki')" href="/support?act=list">{_ticket_list}</a>
         </div>
         <div n:attr="id => ($isNew ? 'activetabs' : 'ki')" class="tab">
-            <a n:attr="id => ($isNew ? 'act_tab_a' : 'ki')" href="/support?act=new">Новое обращение</a>
+            <a n:attr="id => ($isNew ? 'act_tab_a' : 'ki')" href="/support?act=new">{_new_ticket}</a>
         </div>
     </div>
     <br>
@@ -28,8 +28,8 @@
 {if $isNew}
 <div class="new">
     <form action="/support" method="post" style="margin:0;">
-    <center><input name="name" style="width: 80%;resize: vertical;" placeholder="Введите тему вашего обращения"></center><br>
-    <center><textarea name="text" style="width: 80%;resize: vertical;" placeholder="Опишите проблему или предложение"></textarea></center><br>
+    <center><input name="name" style="width: 80%;resize: vertical;" placeholder="{_enter_ticket_topic}"></center><br>
+    <center><textarea name="text" style="width: 80%;resize: vertical;" placeholder="{_describe_problem}"></textarea></center><br>
     <input type="hidden" name="hash" value="{$csrfToken}" />
     <center><input type="submit" value="Написать" class="button" style="margin-left:70%;"></center><br>
     </form>
@@ -37,10 +37,10 @@
 {/if}{/if}
 
 {if $isMain}
-    <h4>Часто задаваемые вопросы</h4><br>
+    <h4>{_frequently_asked_questions}</h4><br>
     <div class="faq">
-        <div id="faqhead">Для кого этот сайт?</div>
-        <div id="faqcontent">Сайт предназначен для поиска друзей и знакомых, а также просмотр данных пользователя. Это как справочник города, с помощью которого люди могут быстро найти актуальную информацию о человеке. Также этот сайт подойдёт для ностальгираторов и тех, кто решил слезть с трубы "ВКонтакте", которого клон и является.<br></div>
+        <div id="faqhead">{_site_target_audience_q}</div>
+        <div id="faqcontent">{_site_target_audience_a_unsafe}<br></div>
     </div>
 {/if}
 
@@ -58,7 +58,7 @@
                </a>
             </div>
             <div class="post-content" style="padding: 4px;font-size: 11px;">
-                Статус: {$ticket->getStatus()}
+                {_ticket_status}: {$ticket->getStatus()}
             </div>
          </td>
       </tr>

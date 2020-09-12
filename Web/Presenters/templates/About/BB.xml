@@ -1,12 +1,11 @@
 {extends "../@layout.xml"}
-{block title}Ваш браузер устарел{/block}
+{block title}{_your_browser_is_old}{/block}
 
 {block header}
-    Устаревший браузер
+    {_browser_is_old}
 {/block}
 
 {block content}
-    Для просмотра этого контента вам понадобится Firefox ESR 52+ или
-    эквивалентный по функционалу навигатор по всемирной сети интернет.<br/>
-    Сожалеем об этом.
+    {_old_browser_warning}<br/>
+    {_sorry_about_that}
 {/block}

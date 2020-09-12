@@ -1,9 +1,9 @@
 {extends "../@layout.xml"}
 
-{block title}Об OpenVK{/block}
+{block title}About OpenVK{/block}
 
 {block header}
-    Об OpenVK
+    About OpenVK
 {/block}
 
 {block content}
